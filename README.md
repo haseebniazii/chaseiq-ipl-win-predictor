@@ -9,7 +9,6 @@
   A full-stack machine learning web application that estimates a team's chances of winning an **IPL second-innings run chase**.
 
   [![Live App](https://img.shields.io/badge/Live_App-Explore_CHASEIQ-88E05F?style=for-the-badge&logo=vercel&logoColor=white)](https://chaseiq-ipl-win-predictor.vercel.app/)
-  [![API Docs](https://img.shields.io/badge/FastAPI-API_Docs-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://chaseiq-ipl-win-predictor.vercel.app/docs)
   [![GitHub](https://img.shields.io/badge/GitHub-Source_Code-181717?style=for-the-badge&logo=github)](https://github.com/haseebniazii/chaseiq-ipl-win-predictor)
 
   <br />
