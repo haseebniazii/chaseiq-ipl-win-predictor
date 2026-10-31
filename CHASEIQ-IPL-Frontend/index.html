@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07121a" />
+  <meta name="description" content="CHASEIQ — a beautiful IPL second-innings winning probability predictor powered by a trained machine learning model." />
+  <title>CHASEIQ | IPL Win Probability Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="m7 7 4-4 4 4M11 3v13m6 1-4 4-4-4m4 4V8"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-7l0-7Z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M3 12h2m14 0h2m-2.6-6.4-1.4 1.4M7 17l-1.4 1.4M5.6 5.6 7 7m10 10 1.4 1.4"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 10v6m0-9h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.4 6M20 4v7h-7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-9m-7 0h7v7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v7c0 5 3 8 8 10 5-2 8-5 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  </svg>
+
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="CHASEIQ home">
+        <span class="brand__mark"><span class="brand__ball"></span><span class="brand__trail"></span></span>
+        <span class="brand__name">CHASE<span>IQ</span><small>CRICKET INTELLIGENCE</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="active" href="#home">Home</a>
+        <a href="#predictor">Predictor</a>
+        <a href="#momentum">Insights</a>
+        <a href="#how-it-works">How it works</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="status-button" class="connection" type="button" title="Open API connection settings">
+          <span class="connection__dot" id="connection-dot"></span>
+          <span id="connection-text">Checking API</span>
+        </button>
+        <button id="settings-button" class="icon-button" aria-label="API settings" title="API settings" type="button"><svg><use href="#i-gear"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero container" aria-labelledby="hero-title">
+      <div class="hero__texture"></div>
+      <div class="hero__visual">
+        <img class="hero__image" src="https://images.unsplash.com/photo-1750716413756-b66624b64ce4?auto=format&amp;fit=crop&amp;w=1700&amp;q=85" alt="Real photograph of Wankhede cricket stadium under floodlights with a crowd" fetchpriority="high" />
+      </div>
+      <div class="hero__content">
+        <div class="eyebrow"><span class="eyebrow__line"></span> THE GAME, DECODED <span class="eyebrow__dot"></span> IPL ANALYTICS</div>
+        <h1 id="hero-title">EVERY BALL<br />CHANGES <em>THE</em><br /><span>GAME.</span></h1>
+        <p>Turn match moments into meaningful numbers. Predict a chase, track momentum, and see which team has the edge—powered by your ML model.</p>
+        <div class="hero__cta">
+          <a href="#predictor" class="button button--accent">Predict a match <svg><use href="#i-arrow"/></svg></a>
+          <a href="#how-it-works" class="button button--quiet">How it works <span class="arrow-circle">↗</span></a>
+        </div>
+        <div class="hero__trust"><span class="trust-icon"><svg><use href="#i-shield"/></svg></span><span>MODEL-BASED ESTIMATES <i></i> SECOND INNINGS ONLY</span></div>
+      </div>
+      <div class="hero__glass" aria-label="Example match scenario">
+        <span class="hero__glass-eyebrow"><span class="mini-pulse"></span> EXAMPLE CHASE SCENARIO</span>
+        <div class="hero__glass-teams"><div><strong>MI</strong><small>MUMBAI</small></div><span class="hero__glass-vs">VS</span><div><strong>CSK</strong><small>CHENNAI</small></div></div>
+        <div class="hero__glass-bottom"><span>CHASE TARGET <b>181</b></span><span>13.0 OV <b>120/4</b></span></div>
+      </div>
+      <span class="hero__edge-label">CHOOSE. CALCULATE. COMPETE.</span>
+    </section>
+
+    <div class="container overview-strip" aria-label="Key product capabilities">
+      <div class="overview-item"><span class="overview-item__symbol"><svg><use href="#i-bolt"/></svg></span><div><strong>INSTANT</strong><span>Match predictions</span></div></div>
+      <span class="overview-divider"></span>
+      <div class="overview-item"><span class="overview-item__symbol"><svg><use href="#i-target"/></svg></span><div><strong>9 FEATURES</strong><span>From your ML model</span></div></div>
+      <span class="overview-divider"></span>
+      <div class="overview-item"><span class="overview-item__symbol"><svg><use href="#i-trend"/></svg></span><div><strong>WHAT-IF</strong><span>Scenario exploration</span></div></div>
+      <span class="overview-divider"></span>
+      <div class="overview-item"><span class="overview-item__symbol"><svg><use href="#i-chart"/></svg></span><div><strong>MOMENTUM</strong><span>Prediction history</span></div></div>
+    </div>
+
+    <section id="predictor" class="workspace container" aria-labelledby="workspace-title">
+      <div class="section-head"><div><div class="kicker"><span>01</span> THE PREDICTOR</div><h2 id="workspace-title">Build your <em>match scenario.</em></h2><p>Select the teams, set the chase, and let the model do its thing.</p></div><span class="section-head__corner">SECOND INNINGS <b>/ 20 OVERS</b></span></div>
+      <div class="workspace-grid">
+        <div class="panel form-panel">
+          <div class="panel-title"><div class="panel-title__icon"><svg><use href="#i-target"/></svg></div><div><h3>Match setup</h3><p>Tell us what's happening on the pitch.</p></div><span class="panel-title__number">01 / 02</span></div>
+          <form id="prediction-form" novalidate>
+            <div class="form-subheading">TEAMS & VENUE <span>01</span></div>
+            <div class="team-fields">
+              <label class="field field--team" for="batting-team"><span class="field__label">BATTING / CHASING</span><span class="select-shell"><span class="team-avatar" id="batting-avatar">MI</span><select id="batting-team" name="batting_team" required aria-label="Batting team"></select><span class="select-chevron">⌄</span></span></label>
+              <button class="swap-button" id="swap-teams" type="button" title="Swap batting and bowling teams" aria-label="Swap teams"><svg><use href="#i-swap"/></svg></button>
+              <label class="field field--team" for="bowling-team"><span class="field__label">BOWLING / DEFENDING</span><span class="select-shell"><span class="team-avatar" id="bowling-avatar">CSK</span><select id="bowling-team" name="bowling_team" required aria-label="Bowling team"></select><span class="select-chevron">⌄</span></span></label>
+            </div>
+            <div class="field field--city"><label class="field__label" for="city">MATCH VENUE / CITY</label><span class="input-icon-wrap"><svg><use href="#i-map"/></svg><select id="city" name="city" required></select><span class="select-chevron">⌄</span></span></div>
+
+            <div class="form-subheading form-subheading--second">CHASE DETAILS <span>02</span></div>
+            <div class="numeric-grid">
+              <div class="field"><label class="field__label" for="target">CHASE TARGET <span class="field__hint">runs to win</span></label><span class="number-wrap"><input id="target" name="target" type="number" min="1" max="600" value="181" step="1" required inputmode="numeric" /><small>RUNS</small></span></div>
+              <div class="field"><label class="field__label" for="score">CURRENT SCORE</label><span class="number-wrap"><input id="score" name="current_score" type="number" min="0" max="600" value="120" step="1" required inputmode="numeric" /><small>RUNS</small></span></div>
+              <div class="field"><label class="field__label" for="overs">OVERS BOWLED <span class="field__hint">e.g. 12.3</span></label><span class="number-wrap"><input id="overs" name="overs" type="text" value="13.0" inputmode="decimal" maxlength="5" pattern="(0|[1-9][0-9]*)(\.[0-5])?" required /><small>OVERS</small></span></div>
+              <div class="field"><label class="field__label" for="wickets">WICKETS LOST</label><span class="number-wrap"><input id="wickets" name="wickets_lost" type="number" min="0" max="10" step="1" value="4" required inputmode="numeric" /><small>/ 10</small></span></div>
+            </div>
+            <div class="form-note"><svg><use href="#i-info"/></svg><span><b>Overs format:</b> 13.4 means 13 overs and 4 balls, not 13.4 decimal overs.</span></div>
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+            <div class="form-actions"><button id="predict-button" class="button button--accent button--predict" type="submit"><span class="btn-idle">CALCULATE WIN PROBABILITY</span><span class="btn-loading" hidden>CALCULATING...</span><svg><use href="#i-arrow"/></svg></button><button id="reset-button" type="button" class="button button--reset" title="Reset sample values"><svg><use href="#i-refresh"/></svg></button></div>
+            <div class="input-footer"><span><span class="tiny-spark"></span> REAL MODEL OUTPUT</span><span>NO LOGIN REQUIRED</span></div>
+          </form>
+        </div>
+
+        <aside class="panel result-panel" aria-labelledby="results-title">
+          <div class="panel-title panel-title--result"><div class="panel-title__icon panel-title__icon--lime"><svg><use href="#i-chart"/></svg></div><div><h3 id="results-title">Prediction engine</h3><p>Probability of winning the chase.</p></div><span class="panel-title__number">02 / 02</span></div>
+          <div id="result-status" class="result-status result-status--waiting"><span class="status-flash"></span> WAITING FOR MODEL</div>
+          <div class="gauge-outer"><div id="probability-ring" class="probability-ring" role="img" aria-label="No win probability calculated yet"><div class="probability-ring__inner"><span class="gauge-caption">WIN CHANCE</span><strong id="win-percent">--<small>%</small></strong><span class="gauge-subtitle" id="gauge-team">CHASING TEAM</span></div></div><span class="gauge-orbit gauge-orbit--one"></span><span class="gauge-orbit gauge-orbit--two"></span></div>
+          <div class="chances-list"><div class="chance-top"><span><span id="win-team-dot" class="chance-dot chance-dot--lime"></span><b id="chasing-team-label">Mumbai Indians</b><small>Chasing</small></span><strong id="win-list-value">--%</strong></div><div class="chance-track"><span id="win-bar" class="chance-fill chance-fill--lime"></span></div><div class="chance-top chance-top--last"><span><span id="lose-team-dot" class="chance-dot chance-dot--orange"></span><b id="defending-team-label">Chennai Super Kings</b><small>Defending</small></span><strong id="lose-list-value">--%</strong></div><div class="chance-track"><span id="lose-bar" class="chance-fill chance-fill--orange"></span></div></div>
+          <div class="winner-callout" id="winner-callout"><span class="winner-callout__icon">↗</span><div><small>MODEL FAVOURITE</small><strong id="winner-label">Awaiting prediction</strong></div></div>
+          <p class="result-footnote" id="result-message">Start your backend and calculate a prediction to see model-generated probabilities.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="stats-section container" aria-labelledby="stats-title">
+      <div class="subsection-line"><h2 id="stats-title">The chase <em>at a glance.</em></h2><span>NUMBERS THAT MATTER</span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-card__top"><span>RUNS NEEDED</span><svg><use href="#i-target"/></svg></div><div class="stat-card__number" id="runs-left">—</div><p>To reach the target</p><span class="stat-card__accent stat-card__accent--lime"></span></article>
+        <article class="stat-card"><div class="stat-card__top"><span>BALLS REMAINING</span><svg><use href="#i-clock"/></svg></div><div class="stat-card__number" id="balls-left">—</div><p>Of the 120-ball innings</p><span class="stat-card__accent stat-card__accent--cyan"></span></article>
+        <article class="stat-card"><div class="stat-card__top"><span>CURRENT RUN RATE</span><svg><use href="#i-trend"/></svg></div><div class="stat-card__number" id="crr">—</div><p>Runs per over so far</p><span class="stat-card__accent stat-card__accent--orange"></span></article>
+        <article class="stat-card"><div class="stat-card__top"><span>REQUIRED RUN RATE</span><svg><use href="#i-chart"/></svg></div><div class="stat-card__number" id="rrr">—</div><p>Runs per over to win</p><span class="stat-card__accent stat-card__accent--violet"></span></article>
+      </div>
+    </section>
+
+    <section id="momentum" class="analytics-section container" aria-labelledby="analytics-title">
+      <div class="section-head section-head--analytics"><div><div class="kicker"><span>02</span> MATCH INTELLIGENCE</div><h2 id="analytics-title">Follow the <em>momentum.</em></h2><p>Each prediction adds a real model result to this session's chart.</p></div><button class="outline-button" type="button" id="clear-history">Clear chart <svg><use href="#i-refresh"/></svg></button></div>
+      <div class="analytics-grid">
+        <div class="panel chart-panel"><div class="chart-panel__heading"><div><strong>Chasing team's win probability</strong><span>SESSION HISTORY · MODEL OUTPUTS ONLY</span></div><span class="chart-legend"><span></span> WIN %</span></div>
+          <div class="chart-area"><div class="chart-y-axis" aria-hidden="true"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div><div class="chart-plot"><svg id="momentum-chart" viewBox="0 0 720 240" preserveAspectRatio="none" role="img" aria-label="Win probability history chart"><defs><linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c8fd4a" stop-opacity=".24"/><stop offset="1" stop-color="#c8fd4a" stop-opacity="0"/></linearGradient></defs><g class="grid-lines"><line x1="0" y1="8" x2="720" y2="8"/><line x1="0" y1="64" x2="720" y2="64"/><line x1="0" y1="120" x2="720" y2="120"/><line x1="0" y1="176" x2="720" y2="176"/><line x1="0" y1="232" x2="720" y2="232"/></g><path id="chart-area-path" d="" fill="url(#chartGradient)"/><path id="chart-line-path" d="" fill="none" stroke="#c8fd4a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" vector-effect="non-scaling-stroke"/><g id="chart-points"></g></svg><div id="chart-placeholder" class="chart-placeholder">Run a prediction to start your momentum chart.<small>Then change the match state and predict again.</small></div><div class="chart-x-axis"><span>0 OV</span><span>5 OV</span><span>10 OV</span><span>15 OV</span><span>20 OV</span></div></div></div>
+          <div class="chart-footer"><span id="history-count">0 predictions recorded</span><span>Only current tab · no live score feed</span></div>
+        </div>
+        <div class="panel scenario-panel"><div class="scenario-panel__label"><span class="scenario-panel__label-dot"></span> QUICK EXPERIMENTS</div><h3>What happens<br />on the <em>next ball?</em></h3><p>Try different match situations. Each button updates the form and requests a fresh prediction from your model.</p><div class="scenario-actions"><button type="button" id="scenario-four"><span class="scenario-actions__icon">+4</span><span>Hit a boundary <small>4 runs · next ball</small></span><svg><use href="#i-arrow"/></svg></button><button type="button" id="scenario-wicket"><span class="scenario-actions__icon scenario-actions__icon--red">W</span><span>Lose a wicket <small>0 runs · next ball</small></span><svg><use href="#i-arrow"/></svg></button></div><div class="scenario-bottom"><svg><use href="#i-info"/></svg><span>Illustrative what-if scenarios, not live match updates.</span></div></div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-section container" aria-labelledby="how-title"><div class="how-media"><img src="https://images.unsplash.com/photo-1674986778924-7a33c1531443?auto=format&amp;fit=crop&amp;w=1000&amp;q=82" alt="Real photograph of a cricket pitch viewed from the batting crease" loading="lazy" /><div class="how-media__caption"><span>INSIDE THE ENGINE</span><strong>Every run.<br />Every wicket.<br />Every possibility.</strong></div></div><div class="how-content"><div class="kicker"><span>03</span> BEHIND THE PREDICTION</div><h2 id="how-title">Cricket instinct.<br /><em>Data precision.</em></h2><p class="how-intro">CHASEIQ sends your match scenario to a FastAPI backend that uses your saved scikit-learn model. No hard-coded percentages—every estimate comes from the prediction pipeline.</p><div class="how-step"><span>01</span><div><h3>Set the stage</h3><p>Choose both teams, the venue, target, score, overs and wickets lost.</p></div></div><div class="how-step"><span>02</span><div><h3>Calculate the chase</h3><p>The API derives runs left, balls left, wickets remaining, and run rates.</p></div></div><div class="how-step"><span>03</span><div><h3>Read the probability</h3><p>Your trained model estimates the chasing and defending teams' win chances.</p></div></div></div></section>
+
+    <section class="cta-section container"><div><span class="eyebrow"><span class="eyebrow__line"></span> READY TO READ THE GAME?</span><h2>THE NEXT BALL <em>IS YOURS.</em></h2><p>Put a scenario into the predictor and see which side has the edge.</p></div><a class="button button--accent" href="#predictor">LAUNCH PREDICTOR <svg><use href="#i-arrow"/></svg></a></section>
+  </main>
+
+  <footer class="footer"><div class="container footer__inner"><a href="#home" class="brand brand--footer"><span class="brand__mark"><span class="brand__ball"></span><span class="brand__trail"></span></span><span class="brand__name">CHASE<span>IQ</span><small>CRICKET INTELLIGENCE</small></span></a><p>Made for cricket fans. Powered by machine learning.<br />Independent student project. Not affiliated with the IPL or its teams.</p><div class="footer__links"><a href="#predictor">Predictor</a><a href="#how-it-works">About</a><button type="button" id="footer-settings">API settings</button></div><span class="footer__year">© <span id="year">2026</span> CHASEIQ</span></div><div class="container footer__credit">Photography: <a href="https://unsplash.com/photos/a-cricket-stadium-is-filled-with-spectators-at-night-uplPFLDsn84" target="_blank" rel="noopener noreferrer">Zoshua Colah / Unsplash</a> and <a href="https://unsplash.com/photos/a-cricket-field-with-a-bat-and-ball-on-it-p8BO9zThWV8" target="_blank" rel="noopener noreferrer">Matthew McLennan / Unsplash</a>. Photos load from Unsplash when online.</div></footer>
+
+  <div class="modal" id="settings-modal" aria-hidden="true"><div class="modal__backdrop" data-close-modal></div><div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title"><button class="modal__close" type="button" data-close-modal aria-label="Close settings"><svg><use href="#i-close"/></svg></button><div class="modal__badge"><svg><use href="#i-gear"/></svg></div><h2 id="settings-title">API connection</h2><p>Enter the public URL of your deployed FastAPI backend, or use <b>http://127.0.0.1:8000</b> for local development.</p><form id="settings-form"><label for="api-base-url">BACKEND BASE URL</label><input id="api-base-url" type="url" placeholder="https://your-backend.vercel.app" autocapitalize="off" autocomplete="url" spellcheck="false" /><small>Enter only the domain, without <code>/api/predict</code>. Leave blank to use automatic detection.</small><p class="modal__message" id="settings-message" role="status"></p><button class="button button--accent modal__save" type="submit">Save & connect <svg><use href="#i-arrow"/></svg></button><button class="modal__reset" type="button" id="reset-api-url">Reset to automatic connection</button></form></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
