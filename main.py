@@ -12,12 +12,14 @@ from typing import Annotated, Any, Literal
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 LOGGER = logging.getLogger("ipl_predictor")
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO").upper())
 
 BASE_DIR = Path(__file__).resolve().parent
+FRONTEND_DIR = BASE_DIR / "CHASEIQ-IPL-Frontend"
 MODEL_PATH = Path(os.getenv("MODEL_PATH", str(BASE_DIR / "pipe.pkl"))).expanduser().resolve()
 MODEL_SCORE_FIELD = os.getenv("MODEL_SCORE_FIELD", "first_innings").strip().lower()
 if MODEL_SCORE_FIELD not in {"first_innings", "target"}:
@@ -298,7 +300,7 @@ def _predict(payload: PredictRequest, request: Request) -> PredictionResponse:
     )
 
 
-@app.get("/", tags=["General"])
+@app.get("/api", tags=["General"])
 def root():
     return {
         "name": "IPL Win Probability Predictor API",
@@ -351,6 +353,13 @@ def predict_batch(payload: BatchPredictRequest, request: Request) -> BatchPredic
     """Predict up to 120 match states, useful for plotting a progression chart."""
     result = [_predict(match, request) for match in payload.matches]
     return BatchPredictResponse(count=len(result), predictions=result)
+
+
+# Serve the entire HTML/CSS/JS website on the SAME domain as the API.
+# Keep this mount LAST: /api/*, /docs and /openapi.json take precedence.
+if not (FRONTEND_DIR / "index.html").is_file():
+    raise RuntimeError(f"Frontend index.html not found: {FRONTEND_DIR}")
+app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
 
 
 if __name__ == "__main__":
