@@ -12,6 +12,6 @@
  * You can also change the URL in the site's API Settings modal (stored locally).
  */
 window.IPL_CONFIG = Object.freeze({
-  API_BASE_URL: "",
+  API_BASE_URL: "https://chaseiq-ipl-win-predictor.vercel.app/",
   REQUEST_TIMEOUT_MS: 15000
 });
